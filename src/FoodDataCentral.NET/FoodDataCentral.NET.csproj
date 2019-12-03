@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Title>FoodDataCentral.NET</Title>
+    <PackageId>FoodDataCentral</PackageId>
+    <Authors>Daniel Clowry</Authors>
+    <Copyright>Copyright (c) 2019 Daniel Clowry</Copyright>
+    <Description>A .NET Standard library for interacting with the US Department of Agriculture's FoodData Central API</Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/DanClowry/FoodDataCentral.NET</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/DanClowry/FoodDataCentral.NET</RepositoryUrl>
+    <RepositoryType>Git</RepositoryType>
+    <RootNamespace>FoodDataCentral</RootNamespace>
+  </PropertyGroup>
+
+</Project>
