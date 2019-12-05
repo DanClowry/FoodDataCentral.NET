@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace FoodDataCentral
 {
-    internal class WebRequester : IRequester
+    class WebRequester : IRequester
     {
         private readonly HttpClient client;
 
@@ -20,9 +21,10 @@ namespace FoodDataCentral
             return await client.GetStringAsync(url);
         }
 
-        public Task<T> GetAsync<T>(string url)
+        public async Task<T> GetAsync<T>(string url)
         {
-            throw new NotImplementedException();
+            string response = await GetRawAsync(url);
+            return JsonConvert.DeserializeObject<T>(response);
         }
 
         public async Task<string> PostRawAsync(string url, string body)
@@ -32,9 +34,10 @@ namespace FoodDataCentral
             return await response.Content.ReadAsStringAsync();
         }
 
-        public Task<T> PostAsync<T>(string url, string body)
+        public async Task<T> PostAsync<T>(string url, string body)
         {
-            throw new NotImplementedException();
+            var response = await PostRawAsync(url, body);
+            return JsonConvert.DeserializeObject<T>(response);
         }
     }
 }
