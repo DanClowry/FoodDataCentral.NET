@@ -20,4 +20,13 @@
     <ProjectReference Include="..\FoodDataCentral.NET\FoodDataCentral.NET.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Data\BigMacFood.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Data\BigMacSearch.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
