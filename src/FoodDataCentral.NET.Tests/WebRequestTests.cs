@@ -25,6 +25,20 @@ namespace FoodDataCentral.Tests
             Assert.Equal(sampleJson, returnedString);
         }
 
+        // TODO: Replace dynamic with food model
+        [Fact]
+        public async void GetAsync_MockFoodEndpoint_ReturnsDynamicFoodObject()
+        {
+            string sampleJson = File.ReadAllText("Data/BigMacFood.json");
+            var mockClient = new HttpClient(MockHttpMessageHandlerFactory("https://api.nal.usda.gov/fdc/v1/170720?api_key=DEMO_KEY", sampleJson));
+            IRequester webRequester = new WebRequester(mockClient);
+
+            var returnedObject = await webRequester.GetAsync<dynamic>("https://api.nal.usda.gov/fdc/v1/170720?api_key=DEMO_KEY");
+            string description = returnedObject.description;
+
+            Assert.Equal("McDONALD'S, BIG MAC", description);
+        }
+
         [Fact]
         public async void PostRawAsync_MockSearchEndpoint_ReturnsJsonString()
         {
@@ -35,6 +49,20 @@ namespace FoodDataCentral.Tests
             string returnedString = await webRequester.PostRawAsync("https://api.nal.usda.gov/fdc/v1/search?api_key=DEMO_KEY", "{\"generalSearchInput\": \"big mac\"}");
 
             Assert.Equal(sampleJson, returnedString);
+        }
+
+        // TODO: Replace dynamic with search result model
+        [Fact]
+        public async void PostAsync_MockSearchEndpoint_ReturnsDynamicSearchResultObject()
+        {
+            string sampleJson = File.ReadAllText("Data/BigMacSearch.json");
+            var mockClient = new HttpClient(MockHttpMessageHandlerFactory("https://api.nal.usda.gov/fdc/v1/search?api_key=DEMO_KEY", sampleJson));
+            IRequester webRequester = new WebRequester(mockClient);
+
+            var returnedObject = await webRequester.PostAsync<dynamic>("https://api.nal.usda.gov/fdc/v1/search?api_key=DEMO_KEY", "{\"generalSearchInput\": \"big mac\"}");
+            string searchInput = returnedObject.foodSearchCriteria.generalSearchInput;
+
+            Assert.Equal("big mac", searchInput);
         }
 
         /// <summary>
