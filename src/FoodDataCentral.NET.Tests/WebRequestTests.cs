@@ -8,6 +8,7 @@ using Xunit;
 using FoodDataCentral;
 using Xunit.Abstractions;
 using System.IO;
+using FoodDataCentral.Models;
 
 namespace FoodDataCentral.Tests
 {
@@ -25,15 +26,14 @@ namespace FoodDataCentral.Tests
             Assert.Equal(sampleJson, returnedString);
         }
 
-        // TODO: Replace dynamic with food model
         [Fact]
-        public async void GetAsync_MockFoodEndpoint_ReturnsDynamicFoodObject()
+        public async void GetAsync_MockFoodEndpoint_ReturnsFoodObject()
         {
             string sampleJson = File.ReadAllText("Data/BigMacFood.json");
             var mockClient = new HttpClient(MockHttpMessageHandlerFactory("https://api.nal.usda.gov/fdc/v1/170720?api_key=DEMO_KEY", sampleJson));
             IRequester webRequester = new WebRequester(mockClient);
 
-            var returnedObject = await webRequester.GetAsync<dynamic>("https://api.nal.usda.gov/fdc/v1/170720?api_key=DEMO_KEY");
+            var returnedObject = await webRequester.GetAsync<Food>("https://api.nal.usda.gov/fdc/v1/170720?api_key=DEMO_KEY");
             string description = returnedObject.description;
 
             Assert.Equal("McDONALD'S, BIG MAC", description);
