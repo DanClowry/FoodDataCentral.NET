@@ -34,7 +34,7 @@ namespace FoodDataCentral.Tests
             IRequester webRequester = new WebRequester(mockClient);
 
             var returnedObject = await webRequester.GetAsync<Food>("https://api.nal.usda.gov/fdc/v1/170720?api_key=DEMO_KEY");
-            string description = returnedObject.description;
+            string description = returnedObject.Description;
 
             Assert.Equal("McDONALD'S, BIG MAC", description);
         }
