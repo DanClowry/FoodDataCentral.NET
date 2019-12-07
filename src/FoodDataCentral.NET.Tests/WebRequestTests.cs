@@ -44,16 +44,15 @@ namespace FoodDataCentral.Tests
             Assert.Equal(sampleJson, returnedString);
         }
 
-        // TODO: Replace dynamic with search result model
         [Fact]
-        public async void PostAsync_MockSearchEndpoint_ReturnsDynamicSearchResultObject()
+        public async void PostAsync_MockSearchEndpoint_ReturnsSearchResultObject()
         {
             string sampleJson = File.ReadAllText("Data/BigMacSearch.json");
             var mockClient = new HttpClient(Util.MockHttpMessageHandlerFactory("https://api.nal.usda.gov/fdc/v1/search?api_key=DEMO_KEY", sampleJson));
             IRequester webRequester = new WebRequester(mockClient);
 
-            var returnedObject = await webRequester.PostAsync<dynamic>("https://api.nal.usda.gov/fdc/v1/search?api_key=DEMO_KEY", "{\"generalSearchInput\": \"big mac\"}");
-            string searchInput = returnedObject.foodSearchCriteria.generalSearchInput;
+            var returnedObject = await webRequester.PostAsync<SearchResult>("https://api.nal.usda.gov/fdc/v1/search?api_key=DEMO_KEY", "{\"generalSearchInput\": \"big mac\"}");
+            string searchInput = returnedObject.FoodSearchCriteria.GeneralSearchInput;
 
             Assert.Equal("big mac", searchInput);
         }
