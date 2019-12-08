@@ -20,5 +20,19 @@ namespace FoodDataCentral.Tests
 
             Assert.Equal("McDONALD'S, BIG MAC", description);
         }
+
+        [Fact]
+        public async void Search_FoodNameOnly_ReturnsSearchResultObject()
+        {
+            string sampleJson = File.ReadAllText("Data/BigMacSearch.json");
+            var mockClient = new HttpClient(Util.MockHttpMessageHandlerFactory("https://api.nal.usda.gov/fdc/v1/search?api_key=DEMO_KEY", sampleJson));
+            IRequester webRequester = new WebRequester(mockClient);
+            var api = new FoodDataCentralAPI("DEMO_KEY", webRequester);
+
+            SearchResult searchResult = await api.Search("big mac");
+            string searchInput = searchResult.FoodSearchCriteria.GeneralSearchInput;
+
+            Assert.Equal("big mac", searchInput);
+        }
     }
 }
