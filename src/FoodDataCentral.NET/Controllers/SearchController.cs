@@ -4,16 +4,9 @@ using System.Threading.Tasks;
 
 namespace FoodDataCentral.Controllers
 {
-    class SearchController
+    internal class SearchController : BaseController
     {
-        private readonly IRequester requester;
-        private readonly string apiKey;
-
-        public SearchController(IRequester requester, string apiKey)
-        {
-            this.requester = requester;
-            this.apiKey = apiKey;
-        }
+        public SearchController(IRequester requester, string apiKey) : base(requester, apiKey) { }
 
         public async Task<SearchResult> Search(FoodSearchCriteria search)
         {
