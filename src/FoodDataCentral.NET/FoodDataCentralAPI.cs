@@ -26,7 +26,7 @@ namespace FoodDataCentral
 
         public async Task<SearchResult> Search(string searchTerm)
         {
-            var search = new FoodSearchCriteria() { GeneralSearchInput = searchTerm };
+            var search = new SearchCriteria() { GeneralSearchInput = searchTerm };
             return await searchController.Search(search);
         }
     }

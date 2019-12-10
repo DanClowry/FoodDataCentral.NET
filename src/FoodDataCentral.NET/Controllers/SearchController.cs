@@ -8,7 +8,7 @@ namespace FoodDataCentral.Controllers
     {
         public SearchController(IRequester requester, string apiKey) : base(requester, apiKey) { }
 
-        public async Task<SearchResult> Search(FoodSearchCriteria search)
+        public async Task<SearchResult> Search(SearchCriteria search)
         {
             var settings = new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore };
             string json = JsonConvert.SerializeObject(search, settings);
