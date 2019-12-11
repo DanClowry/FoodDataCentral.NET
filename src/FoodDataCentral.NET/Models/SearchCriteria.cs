@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using FoodDataCentral.Models.Converters;
+using Newtonsoft.Json;
 
 namespace FoodDataCentral.Models
 {
@@ -15,7 +16,8 @@ namespace FoodDataCentral.Models
         [JsonProperty("pageNumber")]
         public int PageNumber { get; set; }
         [JsonProperty("sortField")]
-        public string SortField { get; set; }
+        [JsonConverter(typeof(SortFieldConverter))]
+        public SortField? SortField { get; set; }
         [JsonProperty("sortDirection")]
         public string SortDirection { get; set; }
         [JsonProperty("requireAllWords")]
@@ -30,5 +32,13 @@ namespace FoodDataCentral.Models
         public bool SurveyFNDDS { get; set; }
         public bool Foundation { get; set; }
         public bool Branded { get; set; }
+    }
+
+    public enum SortField
+    {
+        LowercaseDescription,
+        DataType,
+        PublishedDate,
+        FdcId
     }
 }
