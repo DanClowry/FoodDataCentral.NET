@@ -24,7 +24,9 @@ namespace FoodDataCentral.Models
 
     public class IncludeDataTypes
     {
+        [JsonProperty("SR Legacy")]
         public bool SRLegacy { get; set; }
+        [JsonProperty("Survey (FNDDS)")]
         public bool SurveyFNDDS { get; set; }
         public bool Foundation { get; set; }
         public bool Branded { get; set; }
