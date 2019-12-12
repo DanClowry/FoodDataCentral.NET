@@ -19,7 +19,8 @@ namespace FoodDataCentral.Models
         [JsonConverter(typeof(SortFieldConverter))]
         public SortField? SortField { get; set; }
         [JsonProperty("sortDirection")]
-        public string SortDirection { get; set; }
+        [JsonConverter(typeof(StringEnumConverter))]
+        public SortDirection? SortDirection { get; set; }
         [JsonProperty("requireAllWords")]
         public bool RequireAllWords { get; set; }
     }
@@ -40,5 +41,11 @@ namespace FoodDataCentral.Models
         DataType,
         PublishedDate,
         FdcId
+    }
+
+    public enum SortDirection
+    {
+        asc,
+        desc
     }
 }
