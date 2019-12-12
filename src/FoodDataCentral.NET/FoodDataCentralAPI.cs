@@ -24,9 +24,14 @@ namespace FoodDataCentral
             return await foodController.GetFoodById(id);
         }
 
-        public async Task<SearchResult> Search(string searchTerm)
+        public async Task<SearchResult> Search(string searchTerm, bool includeLegacy = true, 
+            bool includeSurvey = true, bool includeFoundation = true, bool includeBranded = true,
+            string ingredients = null, string brandOwner = null, bool requireAllWords = false, 
+            int pageNumber = 1, SortField? sortBy = null, SortDirection? sortDirection = null)
         {
-            var search = new SearchCriteria() { GeneralSearchInput = searchTerm };
+            var search = new SearchCriteria(searchTerm, includeLegacy, includeSurvey,
+            includeFoundation, includeBranded, ingredients, brandOwner, requireAllWords, pageNumber,
+            sortBy, sortDirection);
             return await searchController.Search(search);
         }
     }

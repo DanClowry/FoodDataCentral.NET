@@ -23,7 +23,7 @@ namespace FoodDataCentral.Tests
         [Fact]
         public void SerialiseSearchCriteria_SortFieldNull_DoesNotReturnSortFieldJson()
         {
-            SearchCriteria searchCriteria = new SearchCriteria() { SortField = null };
+            SearchCriteria searchCriteria = new SearchCriteria(null, sortBy: null);
 
             string json = JsonConvert.SerializeObject(searchCriteria, new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore });
 
