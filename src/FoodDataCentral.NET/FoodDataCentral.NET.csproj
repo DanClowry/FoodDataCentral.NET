@@ -12,6 +12,8 @@
     <RepositoryUrl>https://github.com/DanClowry/FoodDataCentral.NET</RepositoryUrl>
     <RepositoryType>Git</RepositoryType>
     <RootNamespace>FoodDataCentral</RootNamespace>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>1701;1702;1591</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
