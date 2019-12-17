@@ -7,6 +7,8 @@
     <Authors>Daniel Clowry</Authors>
     <Copyright>Copyright (c) 2019 Daniel Clowry</Copyright>
     <Description>A .NET Standard library for interacting with the US Department of Agriculture's FoodData Central API</Description>
+    <PackageTags>fooddatacentral foodcomposition food nutrient api web .net netstandard</PackageTags>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/DanClowry/FoodDataCentral.NET</PackageProjectUrl>
     <RepositoryUrl>https://github.com/DanClowry/FoodDataCentral.NET</RepositoryUrl>
